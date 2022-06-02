@@ -1,5 +1,4 @@
 ﻿#include <iostream>
-#include <array>
 #include <string>
 #include <vector>
 #include <cctype>
@@ -148,21 +147,27 @@ void analysis(vector<string>& words, int time, string path_original, string path
     }
    
     analysis << "Исходный текст: " << endl;
+    cout << "Исходный текст: " << endl;
     original.open(path_original); // открываем файл с оригинальным текстом
     while (!original.eof()) // пока не конец файла
     {
         string line; // строка
         getline(original, line); //считываем строку из файла с ориг текстом
         analysis << line << endl; // записываем в файл анализа
+        cout << line << endl;
     }
     original.close(); // закрываем файл с оригинальным текстом
+    //выводим в файл анализа и на консоль информацию о варианте задания
     analysis << endl << "Вариант 11: латиница, по количеству символов в слове, по убыванию, учитывать числа, быстрая сортировка." << endl << "Количество слов : " << words.size()
+        << endl << "Время сортировки: " << time << " мс" << endl << "Статистика(количество слов каждой длины) :" << endl;
+    cout << endl << "Вариант 11: латиница, по количеству символов в слове, по убыванию, учитывать числа, быстрая сортировка." << endl << "Количество слов : " << words.size()
         << endl << "Время сортировки: " << time << " мс" << endl << "Статистика(количество слов каждой длины) :" << endl;
     vector<words_lengths_count> word_length_count; //вектор с длинами и количеством слов каждой длины
     find_lengths_count_words(words, word_length_count); // ищем длины и считаем слова каждой длины
     for (int i = word_length_count.size() - 1; i >= 0; i--) //перебираем длины по убыванию
-    {
-        analysis << word_length_count[i].length << " - " << word_length_count[i].count << endl; //записываем в файл анализа каждую длину и количество слов
+    {   //выводим в файл анализа и на консоль каждую длину и количество слов
+        analysis << word_length_count[i].length << " - " << word_length_count[i].count << endl; 
+        cout << word_length_count[i].length << " - " << word_length_count[i].count << endl; 
     }
     analysis.close();
 }
