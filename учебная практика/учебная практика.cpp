@@ -157,14 +157,17 @@ void analysis(vector<string>& words, int time, string path_original, string path
         cout << line << endl;
     }
     original.close(); // закрываем файл с оригинальным текстом
+
     //выводим в файл анализа и на консоль информацию о варианте задания
     analysis << endl << "Вариант 11: латиница, по количеству символов в слове, по убыванию, учитывать числа, быстрая сортировка." << endl << "Количество слов : " << words.size()
         << endl << "Время сортировки: " << time << " мс" << endl << "Статистика(количество слов каждой длины) :" << endl;
     cout << endl << "Вариант 11: латиница, по количеству символов в слове, по убыванию, учитывать числа, быстрая сортировка." << endl << "Количество слов : " << words.size()
         << endl << "Время сортировки: " << time << " мс" << endl << "Статистика(количество слов каждой длины) :" << endl;
+
     vector<words_lengths_count> word_length_count; //вектор с длинами и количеством слов каждой длины
     find_lengths_count_words(words, word_length_count); // ищем длины и считаем слова каждой длины
-    for (int i = word_length_count.size() - 1; i >= 0; i--) //перебираем длины по убыванию
+
+    for (int i = 0; i < word_length_count.size();  i++) //перебираем длины по убыванию
     {   //выводим в файл анализа и на консоль каждую длину и количество слов
         analysis << word_length_count[i].length << " - " << word_length_count[i].count << endl; 
         cout << word_length_count[i].length << " - " << word_length_count[i].count << endl; 
@@ -197,3 +200,15 @@ int main()
     analysis(words, time, path_original, path_analysis); //записываем анализ в файл с анализом
 }
 
+/* cymbols  words
+0. 3289
+1. 3535
+2. 4738
+3. 5763
+4. 6901     1122
+5. 8776 
+6. 9393
+7. 11145
+8. 13700  
+9. 15304
+*/
